@@ -10,7 +10,7 @@
 <script>
 export default {
     name:'product',
-    props:['product'],
+    props:['product']
 }
 </script>
 

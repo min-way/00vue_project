@@ -1,50 +1,65 @@
 <template>
- <banner/>
+  <banner/>
 
- <transition name="show">
-    <modal 
-    :product="product"
-    :proView="proView"
-    :proNum="proNum"
-    @modalClose="proView=false"
-    />
- </transition>
-
-
- <product 
- :product="product[i]" 
- v-for="(item,i) in product" :key="i" 
- @modalOpen="proView=true;proNum=$event"
- />
-
-
-
+  <!-- <div class="black-bg" v-if="proView==true">
+    <div class="white-bg">
+      <img v-bind:src="product[proNum].image">
+      <div>{{product[proNum].title}}</div>
+      <div>{{product[proNum].price}}</div>
+      <div>{{product[proNum].content}}</div>
+      <button v-on:click="proView=false">닫기</button>
+    </div>
+  </div> -->
+  
+ <!-- <div class="start" v-bind:class="{end:proView}"> -->
+   <transition name="show">
+     <modal
+     :product="product"
+     :proView="proView"
+     :proNum="proNum"
+     @modalClose="proView=false"
+     />
+   </transition>
+ <!-- </div> -->
+  
+  <!-- <ul class="view">
+    <li v-for="(item,i) in product" :key="i">
+      <img v-bind:src="product[i].image">
+      <div>{{product[i].title}}<span v-on:click="proView=true,proNum=i">[상세보기]</span></div>
+      <div>{{product[i].price}}</div>
+    </li>
+  </ul> -->
+  <product 
+  :product="product[i]" v-for="(item,i) in product" 
+  :key="i" 
+  @modalOpen="proView=true;proNum=$event" 
+  />
 </template>
 
 <script>
-
 import vdata from './data.js'
 import banner from './components/banner.vue'
 import modal from './components/modal.vue'
 import product from './components/product.vue'
 
-
 export default {
-    name: 'App',
-    data(){
-      return{
-        proNum:0,
-        proView:false,
-        product:vdata,
-      }
-    },
-    components:{
-      banner,
-      modal,
-      product,
+  name: 'App',
+  data(){
+    return{
+      proNum:0,
+      proView:false,
+      product:vdata,
     }
-  }
+  },
+ 
+ components:{
+  //  banner:banner, 키값이 같으면 한번만 가능
+   banner,
+   modal,
+   product,
+ }
   
+}
 </script>
 
 <style>
