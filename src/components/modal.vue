@@ -6,7 +6,7 @@
       <div>{{product[proNum].price}}</div>
       <div>{{product[proNum].content}}</div>
       <button @click="$emit('modalClose')">닫기</button>
-    </div>
+    </div> 
   </div>
 </template>
 
